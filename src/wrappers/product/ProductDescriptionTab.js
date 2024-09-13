@@ -4,6 +4,8 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 
 const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
+  const productFullDescList = productFullDesc.trim().split('\n').filter(item => item.trim() !== '');
+
   return (
     <div className={clsx("description-review-area", spaceBottomClass)}>
       <div className="container">
@@ -43,7 +45,9 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="productDescription">
-                {productFullDesc}
+                {productFullDescList?.map((item, index) => (
+                    <div key={index} className="bullet-item">{item}</div>
+                ))}
               </Tab.Pane>
               <Tab.Pane eventKey="productReviews">
                 <div className="row">
@@ -63,7 +67,7 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                           <div className="review-top-wrap">
                             <div className="review-left">
                               <div className="review-name">
-                                <h4>White Lewis</h4>
+                                <h4>Adel Sadek</h4>
                               </div>
                               <div className="review-rating">
                                 <i className="fa fa-star" />
@@ -73,16 +77,13 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                                 <i className="fa fa-star" />
                               </div>
                             </div>
-                            <div className="review-left">
-                              <button>Reply</button>
-                            </div>
+                            {/*<div className="review-left">*/}
+                            {/*  <button>Reply</button>*/}
+                            {/*</div>*/}
                           </div>
                           <div className="review-bottom">
                             <p>
-                              Vestibulum ante ipsum primis aucibus orci
-                              luctustrices posuere cubilia Curae Suspendisse
-                              viverra ed viverra. Mauris ullarper euismod
-                              vehicula. Phasellus quam nisi, congue id nulla.
+                              I have bouight this device and it is amazing Thanks.
                             </p>
                           </div>
                         </div>
@@ -101,7 +102,7 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                           <div className="review-top-wrap">
                             <div className="review-left">
                               <div className="review-name">
-                                <h4>White Lewis</h4>
+                                <h4>Sales Team</h4>
                               </div>
                               <div className="review-rating">
                                 <i className="fa fa-star" />
@@ -111,16 +112,13 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                                 <i className="fa fa-star" />
                               </div>
                             </div>
-                            <div className="review-left">
-                              <button>Reply</button>
-                            </div>
+                            {/*<div className="review-left">*/}
+                            {/*  <button>Reply</button>*/}
+                            {/*</div>*/}
                           </div>
                           <div className="review-bottom">
                             <p>
-                              Vestibulum ante ipsum primis aucibus orci
-                              luctustrices posuere cubilia Curae Suspendisse
-                              viverra ed viverra. Mauris ullarper euismod
-                              vehicula. Phasellus quam nisi, congue id nulla.
+                              Thanks for your words, we hear to help you anytime :) .
                             </p>
                           </div>
                         </div>

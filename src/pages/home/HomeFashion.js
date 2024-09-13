@@ -27,7 +27,7 @@ const HomeFashion = () => {
         <TabProduct spaceBottomClass="pb-60" category="fashion" />
 
         {/* blog featured */}
-        <BlogFeatured spaceBottomClass="pb-55" />
+        {/*<BlogFeatured spaceBottomClass="pb-55" />*/}
       </LayoutOne>
     </Fragment>
   );

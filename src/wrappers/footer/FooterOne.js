@@ -54,11 +54,6 @@ const FooterOne = ({
                       Contact
                     </Link>
                   </li>
-                  <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Orders tracking
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -117,7 +112,7 @@ const FooterOne = ({
                 <ul>
                   <li>
                     <a
-                      href="//www.facebook.com"
+                      href="https://web.facebook.com/doma.egypt"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -126,16 +121,7 @@ const FooterOne = ({
                   </li>
                   <li>
                     <a
-                      href="//www.twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Twitter
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="//www.instagram.com"
+                      href="https://www.instagram.com/doma.eg/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -144,7 +130,7 @@ const FooterOne = ({
                   </li>
                   <li>
                     <a
-                      href="//www.youtube.com"
+                      href="https://www.youtube.com/@DOMA-EG"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

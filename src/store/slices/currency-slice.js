@@ -3,13 +3,20 @@ const { createSlice } = require('@reduxjs/toolkit');
 const currencySlice = createSlice({
     name: "currency",
     initialState: {
-        currencySymbol: "€",
-        currencyName: "EUR",
+        currencySymbol: "EG",
+        currencyName: "EGP",
         currencyRate: 1
     },
     reducers: {
         setCurrency(state, action) {
             const currencyName = action.payload;
+            if (currencyName === "EGP") {
+                return state = {
+                    currencySymbol: "EGP ",
+                    currencyRate: 1,
+                    currencyName
+                };
+            }
 
             if (currencyName === "USD") {
                 return state = {

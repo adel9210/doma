@@ -2,15 +2,15 @@
   {
     "id": 1,
     "title": "Smart Products",
-    "subtitle": "Winter Offer 2024 Collection",
-    "image": "/assets/img/slider/single-slide-hm1-2.png",
+    "subtitle": "Find A Diffuser To Suit Your Needs",
+    "image": "/assets/img/slider/hero-1.jpg",
     "url": "/shop-grid-standard"
   },
   {
     "id": 2,
     "title": "Smart Products",
-    "subtitle": "Summer Offer 2024 Collection",
-    "image": "/assets/img/slider/single-slide-1.png",
+    "subtitle": "Find A Diffuser To Suit Your Needs",
+    "image": "/assets/img/slider/hero-1.jpg",
     "url": "/shop-grid-standard"
   }
 ]

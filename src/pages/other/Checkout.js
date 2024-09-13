@@ -1,10 +1,11 @@
-import { Fragment } from "react";
+import {Fragment, useState} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getDiscountPrice } from "../../helpers/product";
 import SEO from "../../components/seo";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import {useCheckout} from "./useCheckout";
 
 const Checkout = () => {
   let cartTotalPrice = 0;
@@ -12,7 +13,31 @@ const Checkout = () => {
   let { pathname } = useLocation();
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
+  const {sendWhatsAppMessage} = useCheckout()
+  const [formData, setFormData] = useState({
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      government: '',
+      address: '',
+      notes: ''
+  })
 
+  const handlePlaceOrder = (event)=>{
+        event.preventDefault();
+      sendWhatsAppMessage(formData, cartItems[0]).then()
+  }
+
+  const handleFormChange = (event, inputName) =>{
+      const value = event.target.value
+      setFormData((prev)=>{
+          return {
+              ...prev,
+              [inputName]: value
+          }
+      })
+  }
   return (
     <Fragment>
       <SEO
@@ -30,7 +55,7 @@ const Checkout = () => {
         <div className="checkout-area pt-95 pb-100">
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
-              <div className="row">
+              <form onSubmit={handlePlaceOrder} className="row">
                 <div className="col-lg-7">
                   <div className="billing-info-wrap">
                     <h3>Billing Details</h3>
@@ -38,28 +63,22 @@ const Checkout = () => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>First Name</label>
-                          <input type="text" />
+                          <input value={formData.firstName} onChange={(e)=> handleFormChange(e, 'firstName')} required type="text" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Last Name</label>
-                          <input type="text" />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Company Name</label>
-                          <input type="text" />
+                          <input value={formData.lastName} onChange={(e)=> handleFormChange(e, 'lastName')} required type="text" />
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-select mb-20">
-                          <label>Country</label>
-                          <select>
+                          <label>Government</label>
+                          <select required value={formData.government} onChange={(e)=> handleFormChange(e, 'government')}>
                             <option>Select a country</option>
-                            <option>Azerbaijan</option>
-                            <option>Bahamas</option>
+                            <option>Cairo</option>
+                            <option>Giza</option>
                             <option>Bahrain</option>
                             <option>Bangladesh</option>
                             <option>Barbados</option>
@@ -72,42 +91,22 @@ const Checkout = () => {
                           <input
                             className="billing-address"
                             placeholder="House number and street name"
+                            required
                             type="text"
+                            value={formData.address} onChange={(e)=> handleFormChange(e, 'address')}
                           />
-                          <input
-                            placeholder="Apartment, suite, unit etc."
-                            type="text"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Town / City</label>
-                          <input type="text" />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>State / County</label>
-                          <input type="text" />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Postcode / ZIP</label>
-                          <input type="text" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input type="text" />
+                          <input value={formData.phone} onChange={(e)=> handleFormChange(e, 'phone')} required  type="text" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Email Address</label>
-                          <input type="text" />
+                          <input value={formData.email} onChange={(e)=> handleFormChange(e, 'email')} type="text" />
                         </div>
                       </div>
                     </div>
@@ -116,17 +115,17 @@ const Checkout = () => {
                       <h4>Additional information</h4>
                       <div className="additional-info">
                         <label>Order notes</label>
-                        <textarea
-                          placeholder="Notes about your order, e.g. special notes for delivery. "
-                          name="message"
-                          defaultValue={""}
-                        />
+                          <textarea
+                              placeholder="Notes about your order, e.g. special notes for delivery. "
+                              name="message"
+                              value={formData.notes} onChange={(e) => handleFormChange(e, 'notes')}
+                          />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-lg-5">
+                  <div className="col-lg-5">
                   <div className="your-order-area">
                     <h3>Your order</h3>
                     <div className="your-order-wrap gray-bg-4">
@@ -197,11 +196,11 @@ const Checkout = () => {
                       <div className="payment-method"></div>
                     </div>
                     <div className="place-order mt-25">
-                      <button className="btn-hover">Place Order</button>
+                      <button type='submit' className="btn-hover">Place Order</button>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             ) : (
               <div className="row">
                 <div className="col-lg-12">

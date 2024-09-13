@@ -280,20 +280,20 @@ const ProductGridListSingle = ({
                       <i className="pe-7s-like" />
                     </button>
                   </div>
-                  <div className="shop-list-compare ml-10">
-                    <button
-                      className={compareItem !== undefined ? "active" : ""}
-                      disabled={compareItem !== undefined}
-                      title={
-                        compareItem !== undefined
-                          ? "Added to compare"
-                          : "Add to compare"
-                      }
-                      onClick={() => dispatch(addToCompare(product))}
-                    >
-                      <i className="pe-7s-shuffle" />
-                    </button>
-                  </div>
+                  {/*<div className="shop-list-compare ml-10">*/}
+                  {/*  <button*/}
+                  {/*    className={compareItem !== undefined ? "active" : ""}*/}
+                  {/*    disabled={compareItem !== undefined}*/}
+                  {/*    title={*/}
+                  {/*      compareItem !== undefined*/}
+                  {/*        ? "Added to compare"*/}
+                  {/*        : "Add to compare"*/}
+                  {/*    }*/}
+                  {/*    onClick={() => dispatch(addToCompare(product))}*/}
+                  {/*  >*/}
+                  {/*    <i className="pe-7s-shuffle" />*/}
+                  {/*  </button>*/}
+                  {/*</div>*/}
                 </div>
               </div>
             </div>

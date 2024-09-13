@@ -49,32 +49,37 @@ const LanguageCurrencyChanger = ({ currency }) => {
           </ul>
         </div>
       </div>
-      <div className="same-language-currency use-style">
-        <span>
-          {currency.currencyName} <i className="fa fa-angle-down" />
-        </span>
-        <div className="lang-car-dropdown">
-          <ul>
-            <li>
-              <button value="USD" onClick={e => setCurrencyTrigger(e)}>
-                USD
-              </button>
-            </li>
-            <li>
-              <button value="EUR" onClick={e => setCurrencyTrigger(e)}>
-                EUR
-              </button>
-            </li>
-            <li>
-              <button value="GBP" onClick={e => setCurrencyTrigger(e)}>
-                GBP
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
+      {/*<div className="same-language-currency use-style">*/}
+      {/*  <span>*/}
+      {/*    {currency.currencyName} <i className="fa fa-angle-down" />*/}
+      {/*  </span>*/}
+      {/*  <div className="lang-car-dropdown">*/}
+      {/*    <ul>*/}
+      {/*      <li>*/}
+      {/*        <button value="EGP" onClick={e => setCurrencyTrigger(e)}>*/}
+      {/*          EGP*/}
+      {/*        </button>*/}
+      {/*      </li>*/}
+      {/*      <li>*/}
+      {/*        <button value="USD" onClick={e => setCurrencyTrigger(e)}>*/}
+      {/*        USD*/}
+      {/*        </button>*/}
+      {/*      </li>*/}
+      {/*      <li>*/}
+      {/*        <button value="EUR" onClick={e => setCurrencyTrigger(e)}>*/}
+      {/*        EUR*/}
+      {/*        </button>*/}
+      {/*      </li>*/}
+      {/*      <li>*/}
+      {/*        <button value="GBP" onClick={e => setCurrencyTrigger(e)}>*/}
+      {/*          GBP*/}
+      {/*        </button>*/}
+      {/*      </li>*/}
+      {/*    </ul>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <div className="same-language-currency">
-        <p>Call Us 3965410</p>
+        <a href="tel:+201097095362">Call Us 01097095362</a>
       </div>
     </div>
   );
