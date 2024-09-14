@@ -1354,6 +1354,12 @@ input {
   box-shadow: none;
 }
 
+.input-error-label {
+  margin-top: 5px;
+  display: block;
+  color: #c61a32;
+}
+
 select {
   font-size: 14px;
 

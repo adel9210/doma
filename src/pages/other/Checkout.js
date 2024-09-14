@@ -1,43 +1,29 @@
-import {Fragment, useState} from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { getDiscountPrice } from "../../helpers/product";
-import SEO from "../../components/seo";
-import LayoutOne from "../../layouts/LayoutOne";
-import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import {useCheckout} from "./useCheckout";
+import { Fragment, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getDiscountPrice } from '../../helpers/product'
+import SEO from '../../components/seo'
+import LayoutOne from '../../layouts/LayoutOne'
+import Breadcrumb from '../../wrappers/breadcrumb/Breadcrumb'
+import { useCheckout } from './useCheckout'
+import { useForm } from 'react-hook-form'
+import governments from '../../data/egypt-government.json'
 
 const Checkout = () => {
-  let cartTotalPrice = 0;
+  let cartTotalPrice = 0
 
-  let { pathname } = useLocation();
-  const currency = useSelector((state) => state.currency);
-  const { cartItems } = useSelector((state) => state.cart);
-  const {sendWhatsAppMessage} = useCheckout()
-  const [formData, setFormData] = useState({
-      firstName: '',
-      lastName: '',
-      phone: '',
-      email: '',
-      government: '',
-      address: '',
-      notes: ''
-  })
+  let { pathname } = useLocation()
+  const currency = useSelector((state) => state.currency)
+  const { cartItems } = useSelector((state) => state.cart)
+  const { sendWhatsAppMessage, isLoading } = useCheckout()
+  const { register, handleSubmit, formState } = useForm()
+  const { errors } = formState
 
-  const handlePlaceOrder = (event)=>{
-        event.preventDefault();
-      sendWhatsAppMessage(formData, cartItems[0]).then()
+  const handlePlaceOrder = (data) => {
+    sendWhatsAppMessage(data, cartItems[0]).then()
   }
 
-  const handleFormChange = (event, inputName) =>{
-      const value = event.target.value
-      setFormData((prev)=>{
-          return {
-              ...prev,
-              [inputName]: value
-          }
-      })
-  }
+  console.log(errors)
   return (
     <Fragment>
       <SEO
@@ -46,16 +32,16 @@ const Checkout = () => {
       />
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
-        <Breadcrumb 
+        <Breadcrumb
           pages={[
-            {label: "Home", path: process.env.PUBLIC_URL + "/" },
-            {label: "Checkout", path: process.env.PUBLIC_URL + pathname }
-          ]} 
+            { label: 'Home', path: process.env.PUBLIC_URL + '/' },
+            { label: 'Checkout', path: process.env.PUBLIC_URL + pathname },
+          ]}
         />
         <div className="checkout-area pt-95 pb-100">
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
-              <form onSubmit={handlePlaceOrder} className="row">
+              <form onSubmit={handleSubmit(handlePlaceOrder)} className="row">
                 <div className="col-lg-7">
                   <div className="billing-info-wrap">
                     <h3>Billing Details</h3>
@@ -63,50 +49,114 @@ const Checkout = () => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>First Name</label>
-                          <input value={formData.firstName} onChange={(e)=> handleFormChange(e, 'firstName')} required type="text" />
+                          <input
+                            {...register('firstName', {
+                              required: 'This field Is Required!',
+                            })}
+                            type="text"
+                          />
+                          {errors.firstName && (
+                            <span className="input-error-label">
+                              {errors.firstName.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Last Name</label>
-                          <input value={formData.lastName} onChange={(e)=> handleFormChange(e, 'lastName')} required type="text" />
+                          <input
+                            {...register('lastName', {
+                              required: 'This Field Is Required',
+                            })}
+                            type="text"
+                          />
+                          {errors.lastName && (
+                            <span className="input-error-label">
+                              {errors.lastName.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-select mb-20">
                           <label>Government</label>
-                          <select required value={formData.government} onChange={(e)=> handleFormChange(e, 'government')}>
+                          <select
+                            {...register('government', {
+                              required: 'This Field Is Required',
+                            })}
+                          >
                             <option>Select a country</option>
-                            <option>Cairo</option>
-                            <option>Giza</option>
-                            <option>Bahrain</option>
-                            <option>Bangladesh</option>
-                            <option>Barbados</option>
+                            {governments.map((item) => (
+                              <option
+                                value={item.governorate_name_en}
+                                key={item.governorate_name_en}
+                              >
+                                {item.governorate_name_en}
+                              </option>
+                            ))}
                           </select>
+                          {errors.government && (
+                            <span className="input-error-label">
+                              {errors.government.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Street Address</label>
                           <input
-                            className="billing-address"
                             placeholder="House number and street name"
-                            required
                             type="text"
-                            value={formData.address} onChange={(e)=> handleFormChange(e, 'address')}
+                            {...register('address', {
+                              required: 'This Field Is Required',
+                            })}
                           />
+                          {errors.address && (
+                            <span className="input-error-label">
+                              {errors.address.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input value={formData.phone} onChange={(e)=> handleFormChange(e, 'phone')} required  type="text" />
+                          <input
+                            {...register('phone', {
+                              required: 'This Field Is Required',
+                              pattern: {
+                                value: /^(00201|\+201|01)[0-2,5]{1}[0-9]{8}$/,
+                                message: 'Invalid phone number',
+                              },
+                            })}
+                            type="text"
+                          />
+                          {errors.phone && (
+                            <span className="input-error-label">
+                              {errors.phone.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Email Address</label>
-                          <input value={formData.email} onChange={(e)=> handleFormChange(e, 'email')} type="text" />
+                          <input
+                            {...register('email', {
+                              pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Invalid email address',
+                              },
+                            })}
+                            type="text"
+                          />
+                          {errors.email && (
+                            <span className="input-error-label">
+                              {errors.email.message}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -115,17 +165,17 @@ const Checkout = () => {
                       <h4>Additional information</h4>
                       <div className="additional-info">
                         <label>Order notes</label>
-                          <textarea
-                              placeholder="Notes about your order, e.g. special notes for delivery. "
-                              name="message"
-                              value={formData.notes} onChange={(e) => handleFormChange(e, 'notes')}
-                          />
+                        <textarea
+                          placeholder="Notes about your order, e.g. special notes for delivery. "
+                          name="message"
+                          {...register('notes')}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                  <div className="col-lg-5">
+                <div className="col-lg-5">
                   <div className="your-order-area">
                     <h3>Your order</h3>
                     <div className="your-order-wrap gray-bg-4">
@@ -142,24 +192,24 @@ const Checkout = () => {
                               const discountedPrice = getDiscountPrice(
                                 cartItem.price,
                                 cartItem.discount
-                              );
+                              )
                               const finalProductPrice = (
                                 cartItem.price * currency.currencyRate
-                              ).toFixed(2);
+                              ).toFixed(2)
                               const finalDiscountedPrice = (
                                 discountedPrice * currency.currencyRate
-                              ).toFixed(2);
+                              ).toFixed(2)
 
                               discountedPrice != null
                                 ? (cartTotalPrice +=
                                     finalDiscountedPrice * cartItem.quantity)
                                 : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.quantity);
+                                    finalProductPrice * cartItem.quantity)
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
                                     {cartItem.name} X {cartItem.quantity}
-                                  </span>{" "}
+                                  </span>{' '}
                                   <span className="order-price">
                                     {discountedPrice !== null
                                       ? currency.currencySymbol +
@@ -173,21 +223,22 @@ const Checkout = () => {
                                         ).toFixed(2)}
                                   </span>
                                 </li>
-                              );
+                              )
                             })}
                           </ul>
                         </div>
-                        <div className="your-order-bottom">
-                          <ul>
-                            <li className="your-order-shipping">Shipping</li>
-                            <li>Free shipping</li>
-                          </ul>
-                        </div>
+                        {/*<div className="your-order-bottom">*/}
+                        {/*  <ul>*/}
+                        {/*    <li className="your-order-shipping">Shipping</li>*/}
+                        {/*    <li>50</li>*/}
+                        {/*  </ul>*/}
+                        {/*</div>*/}
                         <div className="your-order-total">
                           <ul>
                             <li className="order-total">Total</li>
                             <li>
                               {currency.currencySymbol +
+                                ' ' +
                                 cartTotalPrice.toFixed(2)}
                             </li>
                           </ul>
@@ -196,7 +247,13 @@ const Checkout = () => {
                       <div className="payment-method"></div>
                     </div>
                     <div className="place-order mt-25">
-                      <button type='submit' className="btn-hover">Place Order</button>
+                      <button
+                        disabled={isLoading}
+                        type="submit"
+                        className="btn-hover"
+                      >
+                        Place Order
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -209,8 +266,8 @@ const Checkout = () => {
                       <i className="pe-7s-cash"></i>
                     </div>
                     <div className="item-empty-area__text">
-                      No items found in cart to checkout <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                      No items found in cart to checkout <br />{' '}
+                      <Link to={process.env.PUBLIC_URL + '/shop-grid-standard'}>
                         Shop Now
                       </Link>
                     </div>
@@ -222,7 +279,7 @@ const Checkout = () => {
         </div>
       </LayoutOne>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

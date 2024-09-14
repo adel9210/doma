@@ -125,47 +125,6 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-5">
-                    <div className="ratting-form-wrapper pl-50">
-                      <h3>Add a Review</h3>
-                      <div className="ratting-form">
-                        <form action="#">
-                          <div className="star-box">
-                            <span>Your rating:</span>
-                            <div className="ratting-star">
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                              <i className="fa fa-star" />
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col-md-6">
-                              <div className="rating-form-style mb-10">
-                                <input placeholder="Name" type="text" />
-                              </div>
-                            </div>
-                            <div className="col-md-6">
-                              <div className="rating-form-style mb-10">
-                                <input placeholder="Email" type="email" />
-                              </div>
-                            </div>
-                            <div className="col-md-12">
-                              <div className="rating-form-style form-submit">
-                                <textarea
-                                  name="Your Review"
-                                  placeholder="Message"
-                                  defaultValue={""}
-                                />
-                                <input type="submit" defaultValue="Submit" />
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </Tab.Pane>
             </Tab.Content>

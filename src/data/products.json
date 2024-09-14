@@ -6,75 +6,12 @@
     "price": 1650,
     "discount": 0,
     "offerEnd": "October 5, 2024 12:11:00",
-    "new": true,
+    "new": false,
+    "stock": 0,
     "rating": 5,
     "saleCount": 54,
     "category": ["fashion", "men"],
     "tag": ["diffuser", "black", "jacket", "full sleeve"],
-    "variation": [
-      {
-        "color": "white",
-        "image": "/assets/img/product/fashion/1.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 3
-          },
-          {
-            "name": "m",
-            "stock": 2
-          },
-          {
-            "name": "xl",
-            "stock": 5
-          }
-        ]
-      },
-      {
-        "color": "black",
-        "image": "/assets/img/product/fashion/8.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 4
-          },
-          {
-            "name": "m",
-            "stock": 7
-          },
-          {
-            "name": "xl",
-            "stock": 9
-          },
-          {
-            "name": "xxl",
-            "stock": 1
-          }
-        ]
-      },
-      {
-        "color": "brown",
-        "image": "/assets/img/product/fashion/3.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 1
-          },
-          {
-            "name": "m",
-            "stock": 2
-          },
-          {
-            "name": "xl",
-            "stock": 4
-          },
-          {
-            "name": "xxl",
-            "stock": 0
-          }
-        ]
-      }
-    ],
     "image": [
       "/assets/img/product/diffuser/black/1.jpg",
       "/assets/img/product/diffuser/black/2.jpg",
@@ -92,75 +29,12 @@
     "name": "Air Purifier and Aroma Diffuser 500ml Ultrasonic Air",
     "price": 1150,
     "discount": 1,
-    "new": true,
+    "new": false,
+    "stock": 3,
     "rating": 4,
     "saleCount": 300,
     "category": ["fashion", "women"],
     "tag": ["fashion", "women", "coat", "full sleeve"],
-    "variation": [
-      {
-        "color": "blue",
-        "image": "/assets/img/product/fashion/2.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 3
-          },
-          {
-            "name": "m",
-            "stock": 6
-          },
-          {
-            "name": "xl",
-            "stock": 7
-          }
-        ]
-      },
-      {
-        "color": "brown",
-        "image": "/assets/img/product/fashion/4.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 4
-          },
-          {
-            "name": "m",
-            "stock": 8
-          },
-          {
-            "name": "xl",
-            "stock": 3
-          },
-          {
-            "name": "xxl",
-            "stock": 7
-          }
-        ]
-      },
-      {
-        "color": "black",
-        "image": "/assets/img/product/fashion/5.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 3
-          },
-          {
-            "name": "m",
-            "stock": 7
-          },
-          {
-            "name": "xl",
-            "stock": 0
-          },
-          {
-            "name": "xxl",
-            "stock": 7
-          }
-        ]
-      }
-    ],
     "image": [
       "/assets/img/product/diffuser/500/1.jpg",
       "/assets/img/product/diffuser/500/2.jpg",
@@ -180,11 +54,11 @@
     "discount": 0,
     "offerEnd": "October 2, 2024 12:11:00",
     "new": true,
+    "stock": 2,
     "rating": 5,
     "saleCount": 88,
     "category": ["fashion", "men"],
     "tag": ["fashion", "men", "jacket", "full sleeve"],
-    "stock": 1,
     "image": [
       "/assets/img/product/diffuser/touch/1.jpg",
       "/assets/img/product/diffuser/touch/2.jpg",
@@ -203,74 +77,11 @@
     "price": 7850,
     "discount": 0,
     "new": false,
+    "stock": 0,
     "rating": 4,
     "saleCount": 200,
     "category": ["fashion", "women"],
     "tag": ["fashion", "women", "coat", "full sleeve"],
-    "variation": [
-      {
-        "color": "blue",
-        "image": "/assets/img/product/fashion/2.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 3
-          },
-          {
-            "name": "m",
-            "stock": 6
-          },
-          {
-            "name": "xl",
-            "stock": 7
-          }
-        ]
-      },
-      {
-        "color": "brown",
-        "image": "/assets/img/product/fashion/4.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 4
-          },
-          {
-            "name": "m",
-            "stock": 8
-          },
-          {
-            "name": "xl",
-            "stock": 3
-          },
-          {
-            "name": "xxl",
-            "stock": 7
-          }
-        ]
-      },
-      {
-        "color": "black",
-        "image": "/assets/img/product/fashion/5.jpg",
-        "size": [
-          {
-            "name": "x",
-            "stock": 3
-          },
-          {
-            "name": "m",
-            "stock": 7
-          },
-          {
-            "name": "xl",
-            "stock": 0
-          },
-          {
-            "name": "xxl",
-            "stock": 7
-          }
-        ]
-      }
-    ],
     "image": [
       "/assets/img/product/diffuser/smart/1.jpg",
       "/assets/img/product/diffuser/smart/2.jpg",
