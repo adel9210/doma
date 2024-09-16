@@ -3871,3 +3871,39 @@
     }
   }
 }
+
+
+.main-button {
+  background-color: #a749ff;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 42px 12px;
+  text-transform: uppercase;
+  transition: all .3s ease 0s;
+
+  a {
+    color: #fff!important;
+  }
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+
+.product-layout-items {
+  li {
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: flex;
+    column-gap: 15px;
+  }
+  i {
+    font-size: 20px;
+  }
+
+}
