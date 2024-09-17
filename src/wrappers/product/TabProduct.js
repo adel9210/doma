@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
-import Tab from 'react-bootstrap/Tab'
-import Nav from 'react-bootstrap/Nav'
-import SectionTitle from '../../components/section-title/SectionTitle'
-import ProductGrid from './ProductGrid'
-import useProductGrid from './useProductGrid'
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import Tab from "react-bootstrap/Tab";
+import Nav from "react-bootstrap/Nav";
+import SectionTitle from "../../components/section-title/SectionTitle";
+import ProductGrid from "./ProductGrid";
+import useProductGrid from "./useProductGrid";
 
 const TabProduct = ({
   spaceTopClass,
@@ -12,15 +12,17 @@ const TabProduct = ({
   bgColorClass,
   category,
 }) => {
-  const { products } = useProductGrid()
+  const { products } = useProductGrid();
+
+  if (!products.length) return <div>Loading...</div>;
 
   return (
     <div
       className={clsx(
-        'product-area',
+        "product-area",
         spaceTopClass,
         spaceBottomClass,
-        bgColorClass
+        bgColorClass,
       )}
     >
       <div className="container">
@@ -84,14 +86,14 @@ const TabProduct = ({
         </Tab.Container>
       </div>
     </div>
-  )
-}
+  );
+};
 
 TabProduct.propTypes = {
   bgColorClass: PropTypes.string,
   category: PropTypes.string,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string,
-}
+};
 
-export default TabProduct
+export default TabProduct;

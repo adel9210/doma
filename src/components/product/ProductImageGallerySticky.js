@@ -1,17 +1,16 @@
 import PropTypes from "prop-types";
 
-
 const productImageGallerySticky = ({ product }) => {
   return (
     <div className="product-large-image-wrapper product-large-image-wrapper--sticky">
-      {product.discount || product.new ? (
+      {product.discount || product.isNewProduct ? (
         <div className="product-img-badges">
           {product.discount ? (
             <span className="pink">-{product.discount}%</span>
           ) : (
             ""
           )}
-          {product.new ? <span className="purple">New</span> : ""}
+          {product.isNewProduct ? <span className="purple">New</span> : ""}
         </div>
       ) : (
         ""
@@ -32,7 +31,7 @@ const productImageGallerySticky = ({ product }) => {
 };
 
 productImageGallerySticky.propTypes = {
-  product: PropTypes.shape({})
+  product: PropTypes.shape({}),
 };
 
 export default productImageGallerySticky;

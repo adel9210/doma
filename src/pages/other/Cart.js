@@ -5,7 +5,12 @@ import SEO from "../../components/seo";
 import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { addToCart, decreaseQuantity, deleteFromCart, deleteAllFromCart } from "../../store/slices/cart-slice";
+import {
+  addToCart,
+  decreaseQuantity,
+  deleteFromCart,
+  deleteAllFromCart,
+} from "../../store/slices/cart-slice";
 import { cartItemStock } from "../../helpers/product";
 
 const Cart = () => {
@@ -14,7 +19,7 @@ const Cart = () => {
   const [quantityCount] = useState(1);
   const dispatch = useDispatch();
   let { pathname } = useLocation();
-  
+
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -27,11 +32,11 @@ const Cart = () => {
 
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
-        <Breadcrumb 
+        <Breadcrumb
           pages={[
-            {label: "Home", path: process.env.PUBLIC_URL + "/" },
-            {label: "Cart", path: process.env.PUBLIC_URL + pathname }
-          ]} 
+            { label: "Home", path: process.env.PUBLIC_URL + "/" },
+            { label: "Cart", path: process.env.PUBLIC_URL + pathname },
+          ]}
         />
         <div className="cart-main-area pt-90 pb-100">
           <div className="container">
@@ -56,7 +61,7 @@ const Cart = () => {
                           {cartItems.map((cartItem, key) => {
                             const discountedPrice = getDiscountPrice(
                               cartItem.price,
-                              cartItem.discount
+                              cartItem.discount,
                             );
                             const finalProductPrice = (
                               cartItem.price * currency.currencyRate
@@ -75,7 +80,7 @@ const Cart = () => {
                                 <td className="product-thumbnail">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL +
+                                      process.env.REACT_APP_API_BASE_URL +
                                       "/product/" +
                                       cartItem.id
                                     }
@@ -83,7 +88,8 @@ const Cart = () => {
                                     <img
                                       className="img-fluid"
                                       src={
-                                        process.env.PUBLIC_URL +
+                                        process.env.REACT_APP_API_BASE_URL +
+                                        "/uploads/" +
                                         cartItem.image[0]
                                       }
                                       alt=""
@@ -94,7 +100,7 @@ const Cart = () => {
                                 <td className="product-name">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL +
+                                      process.env.REACT_APP_API_BASE_URL +
                                       "/product/" +
                                       cartItem.id
                                     }
@@ -155,10 +161,12 @@ const Cart = () => {
                                     <button
                                       className="inc qtybutton"
                                       onClick={() =>
-                                        dispatch(addToCart({
-                                          ...cartItem,
-                                          quantity: quantityCount
-                                        }))
+                                        dispatch(
+                                          addToCart({
+                                            ...cartItem,
+                                            quantity: quantityCount,
+                                          }),
+                                        )
                                       }
                                       disabled={
                                         cartItem !== undefined &&
@@ -167,7 +175,7 @@ const Cart = () => {
                                           cartItemStock(
                                             cartItem,
                                             cartItem.selectedProductColor,
-                                            cartItem.selectedProductSize
+                                            cartItem.selectedProductSize,
                                           )
                                       }
                                     >
@@ -190,7 +198,9 @@ const Cart = () => {
                                 <td className="product-remove">
                                   <button
                                     onClick={() =>
-                                      dispatch(deleteFromCart(cartItem.cartItemId))
+                                      dispatch(
+                                        deleteFromCart(cartItem.cartItemId),
+                                      )
                                     }
                                   >
                                     <i className="fa fa-times"></i>

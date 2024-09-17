@@ -4,7 +4,10 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 
 const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
-  const productFullDescList = productFullDesc.trim().split('\n').filter(item => item.trim() !== '');
+  const productFullDescList = productFullDesc
+    .trim()
+    .split("\n")
+    .filter((item) => item.trim() !== "");
 
   return (
     <div className={clsx("description-review-area", spaceBottomClass)}>
@@ -12,11 +15,11 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
         <div className="description-review-wrapper">
           <Tab.Container defaultActiveKey="productDescription">
             <Nav variant="pills" className="description-review-topbar">
-              <Nav.Item>
-                <Nav.Link eventKey="additionalInfo">
-                  Additional Information
-                </Nav.Link>
-              </Nav.Item>
+              {/*<Nav.Item>*/}
+              {/*  <Nav.Link eventKey="additionalInfo">*/}
+              {/*    Additional Information*/}
+              {/*  </Nav.Link>*/}
+              {/*</Nav.Item>*/}
               <Nav.Item>
                 <Nav.Link eventKey="productDescription">Description</Nav.Link>
               </Nav.Item>
@@ -46,7 +49,9 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
               </Tab.Pane>
               <Tab.Pane eventKey="productDescription">
                 {productFullDescList?.map((item, index) => (
-                    <div key={index} className="bullet-item">{item}</div>
+                  <div key={index} className="bullet-item">
+                    {item}
+                  </div>
                 ))}
               </Tab.Pane>
               <Tab.Pane eventKey="productReviews">
@@ -83,7 +88,8 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                           </div>
                           <div className="review-bottom">
                             <p>
-                              I have bouight this device and it is amazing Thanks.
+                              I have bouight this device and it is amazing
+                              Thanks.
                             </p>
                           </div>
                         </div>
@@ -118,7 +124,8 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                           </div>
                           <div className="review-bottom">
                             <p>
-                              Thanks for your words, we hear to help you anytime :) .
+                              Thanks for your words, we hear to help you anytime
+                              :) .
                             </p>
                           </div>
                         </div>
@@ -137,7 +144,7 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
 
 ProductDescriptionTab.propTypes = {
   productFullDesc: PropTypes.string,
-  spaceBottomClass: PropTypes.string
+  spaceBottomClass: PropTypes.string,
 };
 
 export default ProductDescriptionTab;

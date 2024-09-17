@@ -1,13 +1,13 @@
-import { Fragment, useState } from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import Rating from './sub-components/ProductRating'
-import { getDiscountPrice } from '../../helpers/product'
-import ProductModal from './ProductModal'
-import { addToCart } from '../../store/slices/cart-slice'
-import { addToWishlist } from '../../store/slices/wishlist-slice'
+import { Fragment, useState } from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Rating from "./sub-components/ProductRating";
+import { getDiscountPrice } from "../../helpers/product";
+import ProductModal from "./ProductModal";
+import { addToCart } from "../../store/slices/cart-slice";
+import { addToWishlist } from "../../store/slices/wishlist-slice";
 
 const ProductGridSingle = ({
   product,
@@ -17,56 +17,63 @@ const ProductGridSingle = ({
   compareItem,
   spaceBottomClass,
 }) => {
-  const [modalShow, setModalShow] = useState(false)
-  const discountedPrice = getDiscountPrice(product.price, product.discount)
-  const finalProductPrice = +(product.price * currency.currencyRate).toFixed(2)
+  const [modalShow, setModalShow] = useState(false);
+  const discountedPrice = getDiscountPrice(product.price, product.discount);
+  const finalProductPrice = +(product.price * currency.currencyRate).toFixed(2);
   const finalDiscountedPrice = +(
     discountedPrice * currency.currencyRate
-  ).toFixed(2)
-  const dispatch = useDispatch()
-
+  ).toFixed(2);
+  const dispatch = useDispatch();
   return (
     <Fragment>
-      <div className={clsx('product-wrap', spaceBottomClass)}>
+      <div className={clsx("product-wrap", spaceBottomClass)}>
         <div className="product-img">
-          <Link to={process.env.PUBLIC_URL + '/product/' + product.id}>
+          <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
             <img
               className="default-img"
-              src={process.env.PUBLIC_URL + product?.image?.[0]}
+              src={
+                process.env.REACT_APP_API_BASE_URL +
+                "/uploads/" +
+                product?.image?.[0]
+              }
               alt=""
             />
             {product.image?.length > 1 ? (
               <img
                 className="hover-img"
-                src={process.env.PUBLIC_URL + product?.image?.[1]}
+                src={
+                  process.env.REACT_APP_API_BASE_URL +
+                  "/uploads/" +
+                  product?.image?.[1]
+                }
                 alt=""
               />
             ) : (
-              ''
+              ""
             )}
           </Link>
-          {product.discount || product.isNew ? (
+          {product.discount || product.isNewProduct ? (
             <div className="product-img-badges">
               {product.discount ? (
                 <span className="pink">-{product.discount}%</span>
               ) : (
-                ''
+                ""
               )}
-              {product.isNew ? <span className="purple">New</span> : ''}
+              {product.isNewProduct ? <span className="purple">New</span> : ""}
             </div>
           ) : (
-            ''
+            ""
           )}
 
           <div className="product-action">
             <div className="pro-same-action pro-wishlist">
               <button
-                className={wishlistItem !== undefined ? 'active' : ''}
+                className={wishlistItem !== undefined ? "active" : ""}
                 disabled={wishlistItem !== undefined}
                 title={
                   wishlistItem !== undefined
-                    ? 'Added to wishlist'
-                    : 'Add to wishlist'
+                    ? "Added to wishlist"
+                    : "Add to wishlist"
                 }
                 onClick={() => dispatch(addToWishlist(product))}
               >
@@ -80,11 +87,11 @@ const ProductGridSingle = ({
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {' '}
-                  Buy now{' '}
+                  {" "}
+                  Buy now{" "}
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
-                <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
+                <Link to={`${process.env.PUBLIC_URL}/product/${product._id}`}>
                   Select Option
                 </Link>
               ) : product.stock && product.stock > 0 ? (
@@ -92,19 +99,19 @@ const ProductGridSingle = ({
                   onClick={() => dispatch(addToCart(product))}
                   className={
                     cartItem !== undefined && cartItem.quantity > 0
-                      ? 'active'
-                      : ''
+                      ? "active"
+                      : ""
                   }
                   disabled={cartItem !== undefined && cartItem.quantity > 0}
                   title={
-                    cartItem !== undefined ? 'Added to cart' : 'Add to cart'
+                    cartItem !== undefined ? "Added to cart" : "Add to cart"
                   }
                 >
-                  {' '}
-                  <i className="pe-7s-cart"></i>{' '}
+                  {" "}
+                  <i className="pe-7s-cart"></i>{" "}
                   {cartItem !== undefined && cartItem.quantity > 0
-                    ? 'Added'
-                    : 'Add to cart'}
+                    ? "Added"
+                    : "Add to cart"}
                 </button>
               ) : (
                 <button disabled className="active">
@@ -121,7 +128,7 @@ const ProductGridSingle = ({
         </div>
         <div className="product-content text-center">
           <h3>
-            <Link to={process.env.PUBLIC_URL + '/product/' + product.id}>
+            <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
               {product.name}
             </Link>
           </h3>
@@ -130,12 +137,12 @@ const ProductGridSingle = ({
               <Rating ratingValue={product.rating} />
             </div>
           ) : (
-            ''
+            ""
           )}
           <div className="product-price">
             {discountedPrice !== null ? (
               <Fragment>
-                <span>{currency.currencySymbol + finalDiscountedPrice}</span>{' '}
+                <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
                 <span className="old">
                   {currency.currencySymbol + finalProductPrice}
                 </span>
@@ -159,8 +166,8 @@ const ProductGridSingle = ({
         compareItem={compareItem}
       />
     </Fragment>
-  )
-}
+  );
+};
 
 ProductGridSingle.propTypes = {
   cartItem: PropTypes.shape({}),
@@ -170,6 +177,6 @@ ProductGridSingle.propTypes = {
   product: PropTypes.shape({}),
   sliderClassName: PropTypes.string,
   spaceBottomClass: PropTypes.string,
-}
+};
 
-export default ProductGridSingle
+export default ProductGridSingle;

@@ -7,7 +7,7 @@ import HeaderOne from "../../wrappers/header/HeaderOne";
 
 const HomeOnepageScroll = () => {
   const anchors = [];
-  sliderData.forEach(element => {
+  sliderData.forEach((element) => {
     anchors.push(element.id);
   });
   const options = {
@@ -21,12 +21,12 @@ const HomeOnepageScroll = () => {
     sectionClassName: "Section", // the section class name
     sectionPaddingTop: "0", // the section top padding
     sectionPaddingBottom: "0", // the section bottom padding
-    verticalAlign: true // align the content of each section vertical
+    verticalAlign: true, // align the content of each section vertical
   };
   return (
     <Fragment>
       <SEO
-        titleTemplate="Fashion Home"
+        titleTemplate="Doma EG Store"
         description="Fashion home of flone react minimalist eCommerce template."
       />
       <div className="fullpage-slider-wrapper">
@@ -51,7 +51,7 @@ const HomeOnepageScroll = () => {
                             <h1
                               className="animated"
                               dangerouslySetInnerHTML={{
-                                __html: single.subtitle
+                                __html: single.subtitle,
                               }}
                             />
                             <div className="slider-btn-11 btn-hover">

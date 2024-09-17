@@ -1,15 +1,15 @@
-import { Fragment } from 'react'
-import SEO from '../../../components/seo'
-import { Link, useLocation } from 'react-router-dom'
-import { getDiscountPrice } from '../../../helpers/product'
-import { useProducts } from './use-Products'
-import { useSelector } from 'react-redux'
+import { Fragment } from "react";
+import SEO from "../../../components/seo";
+import { Link, useLocation } from "react-router-dom";
+import { getDiscountPrice } from "../../../helpers/product";
+import { useProducts } from "./use-Products";
+import { useSelector } from "react-redux";
 
 const ProductList = () => {
-  let { pathname } = useLocation()
-  const { products, removeProduct } = useProducts()
-  let cartTotalPrice = 0
-  const currency = useSelector((state) => state.currency)
+  let { pathname } = useLocation();
+  const { products, removeProduct } = useProducts();
+  let cartTotalPrice = 0;
+  const currency = useSelector((state) => state.currency);
 
   return (
     <Fragment>
@@ -20,14 +20,14 @@ const ProductList = () => {
           <button className="main-button mb-3" type="submit">
             <Link
               className='className="main-button mb-3'
-              to={pathname + '/add'}
+              to={pathname + "/add"}
             >
               Add Product
             </Link>
           </button>
         </div>
         <div className="table-content table-responsive cart-table-content">
-          <table>
+          <table className="w-100">
             <thead>
               <tr>
                 <th>Image</th>
@@ -41,30 +41,35 @@ const ProductList = () => {
               {products.map((productItem, key) => {
                 const discountedPrice = getDiscountPrice(
                   productItem.price,
-                  productItem.discount
-                )
+                  productItem.discount,
+                );
                 const finalProductPrice = (
                   productItem.price * currency.currencyRate
-                ).toFixed(2)
+                ).toFixed(2);
                 const finalDiscountedPrice = (
                   discountedPrice * currency.currencyRate
-                ).toFixed(2)
+                ).toFixed(2);
 
                 discountedPrice != null
                   ? (cartTotalPrice +=
                       finalDiscountedPrice * productItem.quantity)
-                  : (cartTotalPrice += finalProductPrice * productItem.quantity)
+                  : (cartTotalPrice +=
+                      finalProductPrice * productItem.quantity);
                 return (
                   <tr key={key}>
                     <td className="product-thumbnail">
                       <Link
                         to={
-                          process.env.PUBLIC_URL + '/product/' + productItem._id
+                          process.env.PUBLIC_URL + "/product/" + productItem._id
                         }
                       >
                         <img
                           className="img-fluid"
-                          src={process.env.PUBLIC_URL + productItem.image[0]}
+                          src={
+                            process.env.REACT_APP_API_BASE_URL +
+                            "/uploads/" +
+                            productItem.image[0]
+                          }
                           alt=""
                         />
                       </Link>
@@ -72,7 +77,7 @@ const ProductList = () => {
                     <td className="product-name">
                       <Link
                         to={
-                          process.env.PUBLIC_URL + '/product/' + productItem._id
+                          process.env.PUBLIC_URL + "/product/" + productItem._id
                         }
                       >
                         {productItem.name}
@@ -101,14 +106,14 @@ const ProductList = () => {
                       </button>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
         </div>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

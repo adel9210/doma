@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import FooterCopyright from "../../components/footer/FooterCopyright";
 import FooterNewsletter from "../../components/footer/FooterNewsletter";
 
-
 const FooterOne = ({
   backgroundColorClass,
   spaceTopClass,
@@ -13,10 +12,20 @@ const FooterOne = ({
   spaceRightClass,
   containerClass,
   extraFooterClass,
-  sideMenu
+  sideMenu,
 }) => {
   return (
-    <footer className={clsx("footer-area", backgroundColorClass, spaceTopClass, spaceBottomClass, extraFooterClass, spaceLeftClass, spaceRightClass )}>
+    <footer
+      className={clsx(
+        "footer-area",
+        backgroundColorClass,
+        spaceTopClass,
+        spaceBottomClass,
+        extraFooterClass,
+        spaceLeftClass,
+        spaceRightClass,
+      )}
+    >
       <div className={`${containerClass ? containerClass : "container"}`}>
         <div className="row">
           <div
@@ -137,6 +146,15 @@ const FooterOne = ({
                       Youtube
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="https://www.tiktok.com/@doma.eg?_t=8pnRRHZMNKq&_r=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Tiktok
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -147,11 +165,11 @@ const FooterOne = ({
             }`}
           >
             {/* footer newsletter */}
-            <FooterNewsletter
-              spaceBottomClass="mb-30"
-              spaceLeftClass="ml-70"
-              sideMenu={sideMenu}
-            />
+            {/*<FooterNewsletter*/}
+            {/*  spaceBottomClass="mb-30"*/}
+            {/*  spaceLeftClass="ml-70"*/}
+            {/*  sideMenu={sideMenu}*/}
+            {/*/>*/}
           </div>
         </div>
       </div>
@@ -167,7 +185,7 @@ FooterOne.propTypes = {
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string,
   spaceLeftClass: PropTypes.string,
-  spaceRightClass: PropTypes.string
+  spaceRightClass: PropTypes.string,
 };
 
 export default FooterOne;

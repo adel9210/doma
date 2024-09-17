@@ -1,29 +1,29 @@
-import { Fragment, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { getDiscountPrice } from '../../helpers/product'
-import SEO from '../../components/seo'
-import LayoutOne from '../../layouts/LayoutOne'
-import Breadcrumb from '../../wrappers/breadcrumb/Breadcrumb'
-import { useCheckout } from './useCheckout'
-import { useForm } from 'react-hook-form'
-import governments from '../../data/egypt-government.json'
+import { Fragment, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getDiscountPrice } from "../../helpers/product";
+import SEO from "../../components/seo";
+import LayoutOne from "../../layouts/LayoutOne";
+import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { useCheckout } from "./useCheckout";
+import { useForm } from "react-hook-form";
+import governments from "../../data/egypt-government.json";
 
 const Checkout = () => {
-  let cartTotalPrice = 0
+  let cartTotalPrice = 0;
 
-  let { pathname } = useLocation()
-  const currency = useSelector((state) => state.currency)
-  const { cartItems } = useSelector((state) => state.cart)
-  const { sendWhatsAppMessage, isLoading } = useCheckout()
-  const { register, handleSubmit, formState } = useForm()
-  const { errors } = formState
+  let { pathname } = useLocation();
+  const currency = useSelector((state) => state.currency);
+  const { cartItems } = useSelector((state) => state.cart);
+  const { placeOrder, isLoading } = useCheckout();
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
 
   const handlePlaceOrder = (data) => {
-    sendWhatsAppMessage(data, cartItems[0]).then()
-  }
+    placeOrder(data, cartItems).then();
+  };
 
-  console.log(errors)
+  console.log(errors);
   return (
     <Fragment>
       <SEO
@@ -34,8 +34,8 @@ const Checkout = () => {
         {/* breadcrumb */}
         <Breadcrumb
           pages={[
-            { label: 'Home', path: process.env.PUBLIC_URL + '/' },
-            { label: 'Checkout', path: process.env.PUBLIC_URL + pathname },
+            { label: "Home", path: process.env.PUBLIC_URL + "/" },
+            { label: "Checkout", path: process.env.PUBLIC_URL + pathname },
           ]}
         />
         <div className="checkout-area pt-95 pb-100">
@@ -50,8 +50,8 @@ const Checkout = () => {
                         <div className="billing-info mb-20">
                           <label>First Name</label>
                           <input
-                            {...register('firstName', {
-                              required: 'This field Is Required!',
+                            {...register("firstName", {
+                              required: "This field Is Required!",
                             })}
                             type="text"
                           />
@@ -66,8 +66,8 @@ const Checkout = () => {
                         <div className="billing-info mb-20">
                           <label>Last Name</label>
                           <input
-                            {...register('lastName', {
-                              required: 'This Field Is Required',
+                            {...register("lastName", {
+                              required: "This Field Is Required",
                             })}
                             type="text"
                           />
@@ -82,8 +82,8 @@ const Checkout = () => {
                         <div className="billing-select mb-20">
                           <label>Government</label>
                           <select
-                            {...register('government', {
-                              required: 'This Field Is Required',
+                            {...register("government", {
+                              required: "This Field Is Required",
                             })}
                           >
                             <option>Select a country</option>
@@ -109,8 +109,8 @@ const Checkout = () => {
                           <input
                             placeholder="House number and street name"
                             type="text"
-                            {...register('address', {
-                              required: 'This Field Is Required',
+                            {...register("address", {
+                              required: "This Field Is Required",
                             })}
                           />
                           {errors.address && (
@@ -124,11 +124,11 @@ const Checkout = () => {
                         <div className="billing-info mb-20">
                           <label>Phone</label>
                           <input
-                            {...register('phone', {
-                              required: 'This Field Is Required',
+                            {...register("phone", {
+                              required: "This Field Is Required",
                               pattern: {
                                 value: /^(00201|\+201|01)[0-2,5]{1}[0-9]{8}$/,
-                                message: 'Invalid phone number',
+                                message: "Invalid phone number",
                               },
                             })}
                             type="text"
@@ -144,10 +144,10 @@ const Checkout = () => {
                         <div className="billing-info mb-20">
                           <label>Email Address</label>
                           <input
-                            {...register('email', {
+                            {...register("email", {
                               pattern: {
                                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'Invalid email address',
+                                message: "Invalid email address",
                               },
                             })}
                             type="text"
@@ -168,7 +168,7 @@ const Checkout = () => {
                         <textarea
                           placeholder="Notes about your order, e.g. special notes for delivery. "
                           name="message"
-                          {...register('notes')}
+                          {...register("notes")}
                         />
                       </div>
                     </div>
@@ -191,25 +191,25 @@ const Checkout = () => {
                             {cartItems.map((cartItem, key) => {
                               const discountedPrice = getDiscountPrice(
                                 cartItem.price,
-                                cartItem.discount
-                              )
+                                cartItem.discount,
+                              );
                               const finalProductPrice = (
                                 cartItem.price * currency.currencyRate
-                              ).toFixed(2)
+                              ).toFixed(2);
                               const finalDiscountedPrice = (
                                 discountedPrice * currency.currencyRate
-                              ).toFixed(2)
+                              ).toFixed(2);
 
                               discountedPrice != null
                                 ? (cartTotalPrice +=
                                     finalDiscountedPrice * cartItem.quantity)
                                 : (cartTotalPrice +=
-                                    finalProductPrice * cartItem.quantity)
+                                    finalProductPrice * cartItem.quantity);
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
                                     {cartItem.name} X {cartItem.quantity}
-                                  </span>{' '}
+                                  </span>{" "}
                                   <span className="order-price">
                                     {discountedPrice !== null
                                       ? currency.currencySymbol +
@@ -223,7 +223,7 @@ const Checkout = () => {
                                         ).toFixed(2)}
                                   </span>
                                 </li>
-                              )
+                              );
                             })}
                           </ul>
                         </div>
@@ -238,7 +238,7 @@ const Checkout = () => {
                             <li className="order-total">Total</li>
                             <li>
                               {currency.currencySymbol +
-                                ' ' +
+                                " " +
                                 cartTotalPrice.toFixed(2)}
                             </li>
                           </ul>
@@ -266,8 +266,8 @@ const Checkout = () => {
                       <i className="pe-7s-cash"></i>
                     </div>
                     <div className="item-empty-area__text">
-                      No items found in cart to checkout <br />{' '}
-                      <Link to={process.env.PUBLIC_URL + '/shop-grid-standard'}>
+                      No items found in cart to checkout <br />{" "}
+                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
                         Shop Now
                       </Link>
                     </div>
@@ -279,7 +279,7 @@ const Checkout = () => {
         </div>
       </LayoutOne>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
