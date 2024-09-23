@@ -14,7 +14,12 @@ const TabProduct = ({
 }) => {
   const { products } = useProductGrid();
 
-  if (!products.length) return <div>Loading...</div>;
+  if (!products.length)
+    return (
+      <div className="text-center container mt-4 bg-aqua p-4 rounded">
+        No Products Found!!...
+      </div>
+    );
 
   return (
     <div

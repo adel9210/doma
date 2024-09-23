@@ -100,6 +100,11 @@ const OrderList = () => {
               ))}
             </tbody>
           </table>
+          {!orders.length && (
+            <div className="text-center container mt-4 bg-aqua p-4 rounded">
+              No Orders Found!!...
+            </div>
+          )}
         </div>
       </div>
     </Fragment>
