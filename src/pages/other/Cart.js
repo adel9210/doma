@@ -78,13 +78,7 @@ const Cart = () => {
                             return (
                               <tr key={key}>
                                 <td className="product-thumbnail">
-                                  <Link
-                                    to={
-                                      process.env.REACT_APP_API_BASE_URL +
-                                      "/product/" +
-                                      cartItem.id
-                                    }
-                                  >
+                                  <Link to={"/product/" + cartItem._id}>
                                     <img
                                       className="img-fluid"
                                       src={cartItem.image[0].path}
