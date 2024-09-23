@@ -414,6 +414,7 @@ const App = () => {
             >
               <Route path="products" element={<AdminProducts />} />
               <Route path="products/add" element={<AdminProductForm />} />
+              <Route path="products/edit/:id" element={<AdminProductForm />} />
               <Route path="orders" element={<AdminOrders />} />
             </Route>
           </Routes>

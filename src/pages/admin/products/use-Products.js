@@ -52,6 +52,21 @@ export const useProducts = () => {
     }
   };
 
+  const deleteImage = async (filename) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this image?",
+    );
+    if (!confirm) return;
+    await axios.delete(`/products/delete-image/${filename}`);
+  };
+
+  const updateProduct = async (id, product) => {
+    console.log("product", product);
+    const updatedData = { ...product };
+    delete updatedData.images;
+    await axios.put(`/products/${id}`, updatedData);
+  };
+
   useEffect(() => {
     getProducts().then();
   }, []);
@@ -60,6 +75,8 @@ export const useProducts = () => {
     products,
     addProduct,
     removeProduct,
+    updateProduct,
     getProductItem,
+    deleteImage,
   };
 };

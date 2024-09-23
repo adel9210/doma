@@ -1,9 +1,10 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import SEO from "../../../components/seo";
 import { useForm } from "react-hook-form";
 import { useProducts } from "./use-Products";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setActiveSort } from "../../../helpers/product";
+import cogoToast from "cogo-toast";
 
 const categoriesList = [
   {
@@ -25,21 +26,48 @@ const ProductForm = () => {
   const { errors } = formState;
   const navigate = useNavigate();
   const uploadedImages = watch("images");
-  const { addProduct } = useProducts();
+  const productImages = watch("image");
+  const { addProduct, getProductItem, deleteImage, updateProduct } =
+    useProducts();
   const [categories, setCategories] = useState([]);
+  const params = useParams();
+  const productId = params.id;
 
-  const submitOrder = (data) => {
-    addProduct(data).then((res) => {
-      reset();
+  useEffect(() => {
+    if (productId) {
+      (async () => {
+        const product = await getProductItem(productId);
+        debugger;
+        reset(product);
+      })();
+    }
+  }, [productId]);
+
+  const deleteImageHandler = async (filename) => {
+    const result = await deleteImage(filename);
+    if (result) {
+      // show toast message
+      cogoToast.success("Image deleted successfully", {
+        position: "top-right",
+      });
       navigate("/admin/products");
-    });
+    }
+  };
+
+  const submitOrder = async (data) => {
+    if (productId) {
+      await updateProduct(productId, data);
+    } else {
+      await addProduct(data);
+    }
+    navigate("/admin/products");
   };
   return (
     <Fragment>
       <SEO titleTemplate="Admin - Products" description="admin products" />
 
       <div className="cart-main-area pb-100">
-        <h4>Add Product</h4>
+        <h4>{productId ? "Edit Product" : "Add Product"}</h4>
         <form onSubmit={handleSubmit(submitOrder)} className="row">
           <div className="col-lg-6 col-md-6 billing-info-wrap">
             <div className="billing-info mb-20">
@@ -199,7 +227,7 @@ const ProductForm = () => {
                   accept="image/jpeg, image/png, image/gif"
                   multiple
                   {...register("images", {
-                    required: "This field Is Required!",
+                    required: productId ? false : "This field Is Required!",
                   })}
                 />
                 {errors.images && (
@@ -211,25 +239,50 @@ const ProductForm = () => {
             </div>
           </div>
 
-          <div className="uploaded-images">
-            {uploadedImages?.length ? (
-              [...uploadedImages]?.map((image, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={URL.createObjectURL(image)}
-                    alt={`uploaded image ${index}`}
-                    className="uploaded-image"
-                  />
-                );
-              })
-            ) : (
-              <></>
-            )}
-          </div>
+          {productId ? (
+            <div className="uploaded-images">
+              {productImages?.length ? (
+                [...productImages]?.map((image, index) => {
+                  return (
+                    <div className="image-wrapper">
+                      <i
+                        onClick={() => deleteImageHandler(image.filename)}
+                        className="delete-image fa fa-times"
+                      ></i>
+                      <img
+                        key={index}
+                        src={image.path}
+                        alt={`uploaded image ${index}`}
+                        className="uploaded-image"
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <></>
+              )}
+            </div>
+          ) : (
+            <div className="uploaded-images">
+              {uploadedImages?.length ? (
+                [...uploadedImages]?.map((image, index) => {
+                  return (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(image)}
+                      alt={`uploaded image ${index}`}
+                      className="uploaded-image"
+                    />
+                  );
+                })
+              ) : (
+                <></>
+              )}
+            </div>
+          )}
           <div className="col-lg-12 mt-5">
             <button className="main-button" type="submit">
-              Add Product
+              {productId ? "Update Product" : "Add Product"}
             </button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import SEO from "../../../components/seo";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getDiscountPrice } from "../../../helpers/product";
 import { useProducts } from "./use-Products";
 import { useSelector } from "react-redux";
@@ -10,6 +10,10 @@ const ProductList = () => {
   const { products, removeProduct } = useProducts();
   let cartTotalPrice = 0;
   const currency = useSelector((state) => state.currency);
+  const navigate = useNavigate();
+  const editProduct = (id) => {
+    navigate(pathname + "/edit/" + id);
+  };
 
   return (
     <Fragment>
@@ -99,6 +103,10 @@ const ProductList = () => {
                     <td className="product-remove">
                       <button onClick={() => removeProduct(productItem._id)}>
                         <i className="fa fa-times"></i>
+                      </button>
+
+                      <button onClick={() => editProduct(productItem._id)}>
+                        <i className="fa fa-pencil"></i>
                       </button>
                     </td>
                   </tr>
