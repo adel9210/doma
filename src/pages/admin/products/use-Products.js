@@ -9,7 +9,7 @@ export const useProducts = () => {
   const getProducts = async () => {
     const res = await axios.get("/products");
     setProductsList(res.data);
-    dispatch(setProducts(res.data));
+    dispatch(setProducts(res.data?.files));
   };
 
   const addProduct = async (product) => {
@@ -23,7 +23,11 @@ export const useProducts = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      const images = response.data.files.map((image) => image.filename);
+      const images = response.data.files.map((image) => ({
+        filename: image.filename,
+        path: image.path,
+      }));
+      delete product.images;
       const addProductResponse = await axios.post("/products", {
         ...product,
         image: images,

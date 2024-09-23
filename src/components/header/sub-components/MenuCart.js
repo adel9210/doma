@@ -43,11 +43,7 @@ const MenuCart = () => {
                     >
                       <img
                         alt=""
-                        src={
-                          process.env.REACT_APP_API_BASE_URL +
-                          "/uploads/" +
-                          item.image[0]
-                        }
+                        src={item.image[0].path}
                         className="img-fluid"
                       />
                     </Link>

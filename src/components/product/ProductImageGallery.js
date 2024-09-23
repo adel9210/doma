@@ -11,7 +11,7 @@ const ProductImageGallery = ({ product }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [index, setIndex] = useState(-1);
   const slides = product?.image.map((img, i) => ({
-    src: process.env.REACT_APP_API_BASE_URL + "/uploads/" + img,
+    src: img.path,
     key: i,
   }));
 
@@ -64,13 +64,7 @@ const ProductImageGallery = ({ product }) => {
                   <i className="pe-7s-expand1"></i>
                 </button>
                 <div className="single-image">
-                  <img
-                    src={
-                      process.env.REACT_APP_API_BASE_URL + "/uploads/" + single
-                    }
-                    className="img-fluid"
-                    alt=""
-                  />
+                  <img src={single.path} className="img-fluid" alt="" />
                 </div>
               </SwiperSlide>
             ))}
@@ -90,13 +84,7 @@ const ProductImageGallery = ({ product }) => {
             {product.image.map((single, key) => (
               <SwiperSlide key={key}>
                 <div className="single-image">
-                  <img
-                    src={
-                      process.env.REACT_APP_API_BASE_URL + "/uploads/" + single
-                    }
-                    className="img-fluid"
-                    alt=""
-                  />
+                  <img src={single.path} className="img-fluid" alt="" />
                 </div>
               </SwiperSlide>
             ))}

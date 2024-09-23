@@ -33,25 +33,9 @@ const ProductGridListSingle = ({
           <Link
             to={process.env.REACT_APP_API_BASE_URL + "/product/" + product.id}
           >
-            <img
-              className="default-img"
-              src={
-                process.env.REACT_APP_API_BASE_URL +
-                "/uploads/" +
-                product.image[0]
-              }
-              alt=""
-            />
+            <img className="default-img" src={product.image[0].path} alt="" />
             {product.image.length > 1 ? (
-              <img
-                className="hover-img"
-                src={
-                  process.env.REACT_APP_API_BASE_URL +
-                  "/uploads/" +
-                  product.image[1]
-                }
-                alt=""
-              />
+              <img className="hover-img" src={product.image[1].path} alt="" />
             ) : (
               ""
             )}
@@ -177,11 +161,7 @@ const ProductGridListSingle = ({
                 >
                   <img
                     className="default-img img-fluid"
-                    src={
-                      process.env.REACT_APP_API_BASE_URL +
-                      "/uploads/" +
-                      product.image[0]
-                    }
+                    src={product.image[0].path}
                     alt=""
                   />
                   {product.image.length > 1 ? (

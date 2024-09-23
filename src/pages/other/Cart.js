@@ -87,11 +87,7 @@ const Cart = () => {
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={
-                                        process.env.REACT_APP_API_BASE_URL +
-                                        "/uploads/" +
-                                        cartItem.image[0]
-                                      }
+                                      src={cartItem.image[0].path}
                                       alt=""
                                     />
                                   </Link>

@@ -22,9 +22,10 @@ export const getProducts = (products, category, type, limit) => {
     const saleItems = finalProducts.filter(
       (single) => single.discount && single.discount > 0,
     );
-    return saleItems.slice(0, limit ? limit : saleItems.length);
+    return saleItems?.slice(0, limit ? limit : saleItems.length);
   }
-  return finalProducts.slice(0, limit ? limit : finalProducts.length);
+  debugger;
+  return finalProducts?.slice(0, limit ? limit : finalProducts.length);
 };
 
 // get product discount price

@@ -65,11 +65,7 @@ const ProductList = () => {
                       >
                         <img
                           className="img-fluid"
-                          src={
-                            process.env.REACT_APP_API_BASE_URL +
-                            "/uploads/" +
-                            productItem.image[0]
-                          }
+                          src={productItem.image[0].path}
                           alt=""
                         />
                       </Link>

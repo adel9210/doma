@@ -12,7 +12,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [index, setIndex] = useState(-1);
   const slides = product?.image.map((img, i) => ({
-    src: process.env.REACT_APP_API_BASE_URL + "/uploads/" + img,
+    src: img.path,
     key: i,
   }));
 

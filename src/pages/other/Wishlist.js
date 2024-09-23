@@ -79,11 +79,7 @@ const Wishlist = () => {
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={
-                                        process.env.REACT_APP_API_BASE_URL +
-                                        "/uploads/" +
-                                        wishlistItem.image[0]
-                                      }
+                                      src={wishlistItem.image[0].path}
                                       alt=""
                                     />
                                   </Link>
