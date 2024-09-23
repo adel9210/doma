@@ -12,8 +12,13 @@ export const useOrders = () => {
   };
 
   const deleteOrder = async (id) => {
-    await axios.delete(`/orders/${id}`);
-    getOrders().then();
+    const confirm = window.confirm(
+      "Are you sure you want to delete this order?",
+    );
+    if (confirm) {
+      await axios.delete(`/orders/${id}`);
+      await getOrders();
+    }
   };
 
   useEffect(() => {

@@ -24,7 +24,6 @@ export const getProducts = (products, category, type, limit) => {
     );
     return saleItems?.slice(0, limit ? limit : saleItems.length);
   }
-  debugger;
   return finalProducts?.slice(0, limit ? limit : finalProducts.length);
 };
 
