@@ -1,7 +1,7 @@
 // get products
 export const getProducts = (products, category, type, limit) => {
   const finalProducts = category
-    ? products.filter(
+    ? products?.filter(
         (product) =>
           product.category?.filter((single) => single === category)[0],
       )

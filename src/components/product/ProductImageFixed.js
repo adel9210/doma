@@ -18,13 +18,7 @@ const ProductImageFixed = ({ product }) => {
 
       <div className="product-fixed-image">
         {product.image ? (
-          <img
-            src={
-              process.env.REACT_APP_API_BASE_URL + "/uploads" + product.image[0]
-            }
-            alt=""
-            className="img-fluid"
-          />
+          <img src={product.image[0].path} alt="" className="img-fluid" />
         ) : (
           ""
         )}

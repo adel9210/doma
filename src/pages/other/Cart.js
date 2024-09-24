@@ -88,13 +88,7 @@ const Cart = () => {
                                 </td>
 
                                 <td className="product-name">
-                                  <Link
-                                    to={
-                                      process.env.REACT_APP_API_BASE_URL +
-                                      "/product/" +
-                                      cartItem.id
-                                    }
-                                  >
+                                  <Link to={"/product/" + cartItem._id}>
                                     {cartItem.name}
                                   </Link>
                                   {cartItem.selectedProductColor &&

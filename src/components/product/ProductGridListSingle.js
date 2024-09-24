@@ -30,9 +30,7 @@ const ProductGridListSingle = ({
     <Fragment>
       <div className={clsx("product-wrap", spaceBottomClass)}>
         <div className="product-img">
-          <Link
-            to={process.env.REACT_APP_API_BASE_URL + "/product/" + product.id}
-          >
+          <Link to={"/product/" + product._id}>
             <img className="default-img" src={product.image[0].path} alt="" />
             {product.image.length > 1 ? (
               <img className="hover-img" src={product.image[1].path} alt="" />
@@ -79,11 +77,7 @@ const ProductGridListSingle = ({
                   Buy now{" "}
                 </a>
               ) : product.variation && product.variation.length >= 1 ? (
-                <Link
-                  to={`${process.env.REACT_APP_API_BASE_URL}/product/${product.id}`}
-                >
-                  Select Option
-                </Link>
+                <Link to={`/product/${product._id}`}>Select Option</Link>
               ) : product.stock && product.stock > 0 ? (
                 <button
                   onClick={() => dispatch(addToCart(product))}
@@ -118,13 +112,7 @@ const ProductGridListSingle = ({
         </div>
         <div className="product-content text-center">
           <h3>
-            <Link
-              to={
-                process.env.REACT_APP_API_BASE_URL + "/product/" + product._id
-              }
-            >
-              {product.name}
-            </Link>
+            <Link to={"/product/" + product._id}>{product.name}</Link>
           </h3>
           {product.rating && product.rating > 0 ? (
             <div className="product-rating">
@@ -152,13 +140,7 @@ const ProductGridListSingle = ({
           <div className="col-xl-4 col-md-5 col-sm-6">
             <div className="product-list-image-wrap">
               <div className="product-img">
-                <Link
-                  to={
-                    process.env.REACT_APP_API_BASE_URL +
-                    "/product/" +
-                    product.id
-                  }
-                >
+                <Link to={"/product/" + product._id}>
                   <img
                     className="default-img img-fluid"
                     src={product.image[0].path}
@@ -167,9 +149,7 @@ const ProductGridListSingle = ({
                   {product.image.length > 1 ? (
                     <img
                       className="hover-img img-fluid"
-                      src={
-                        process.env.REACT_APP_API_BASE_URL + product.image[1]
-                      }
+                      src={product.image[1].path}
                       alt=""
                     />
                   ) : (
@@ -194,15 +174,7 @@ const ProductGridListSingle = ({
           <div className="col-xl-8 col-md-7 col-sm-6">
             <div className="shop-list-content">
               <h3>
-                <Link
-                  to={
-                    process.env.REACT_APP_API_BASE_URL +
-                    "/product/" +
-                    product._id
-                  }
-                >
-                  {product.name}
-                </Link>
+                <Link to={"/product/" + product._id}>{product.name}</Link>
               </h3>
               <div className="product-list-price">
                 {discountedPrice !== null ? (
@@ -245,11 +217,7 @@ const ProductGridListSingle = ({
                       Buy now{" "}
                     </a>
                   ) : product.variation && product.variation.length >= 1 ? (
-                    <Link
-                      to={`${process.env.REACT_APP_API_BASE_URL}/product/${product._id}`}
-                    >
-                      Select Option
-                    </Link>
+                    <Link to={`/product/${product._id}`}>Select Option</Link>
                   ) : product.stock && product.stock > 0 ? (
                     <button
                       onClick={() => dispatch(addToCart(product))}

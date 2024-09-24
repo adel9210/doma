@@ -66,17 +66,12 @@ const Wishlist = () => {
                             const cartItem = cartItems.find(
                               (item) => item._id === wishlistItem._id,
                             );
-                            debugger;
+
+                            console.log(wishlistItem);
                             return (
                               <tr key={key}>
                                 <td className="product-thumbnail">
-                                  <Link
-                                    to={
-                                      process.env.REACT_APP_API_BASE_URL +
-                                      "/product/" +
-                                      wishlistItem.id
-                                    }
-                                  >
+                                  <Link to={"/product/" + wishlistItem._id}>
                                     <img
                                       className="img-fluid"
                                       src={wishlistItem.image[0].path}
@@ -86,13 +81,7 @@ const Wishlist = () => {
                                 </td>
 
                                 <td className="product-name text-center">
-                                  <Link
-                                    to={
-                                      process.env.REACT_APP_API_BASE_URL +
-                                      "/product/" +
-                                      wishlistItem.id
-                                    }
-                                  >
+                                  <Link to={"/product/" + wishlistItem._id}>
                                     {wishlistItem.name}
                                   </Link>
                                 </td>
@@ -129,9 +118,7 @@ const Wishlist = () => {
                                     </a>
                                   ) : wishlistItem.variation &&
                                     wishlistItem.variation.length >= 1 ? (
-                                    <Link
-                                      to={`${process.env.REACT_APP_API_BASE_URL}/product/${wishlistItem.id}`}
-                                    >
+                                    <Link to={`/product/${wishlistItem._id}`}>
                                       Select option
                                     </Link>
                                   ) : wishlistItem.stock &&
@@ -192,12 +179,7 @@ const Wishlist = () => {
                   <div className="col-lg-12">
                     <div className="cart-shiping-update-wrapper">
                       <div className="cart-shiping-update">
-                        <Link
-                          to={
-                            process.env.REACT_APP_API_BASE_URL +
-                            "/shop-grid-standard"
-                          }
-                        >
+                        <Link to={"/shop-grid-standard"}>
                           Continue Shopping
                         </Link>
                       </div>
@@ -221,14 +203,7 @@ const Wishlist = () => {
                     </div>
                     <div className="item-empty-area__text">
                       No items found in wishlist <br />{" "}
-                      <Link
-                        to={
-                          process.env.REACT_APP_API_BASE_URL +
-                          "/shop-grid-standard"
-                        }
-                      >
-                        Add Items
-                      </Link>
+                      <Link to={"/shop-grid-standard"}>Add Items</Link>
                     </div>
                   </div>
                 </div>

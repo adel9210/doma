@@ -34,13 +34,7 @@ const MenuCart = () => {
               return (
                 <li className="single-shopping-cart" key={item.cartItemId}>
                   <div className="shopping-cart-img">
-                    <Link
-                      to={
-                        process.env.REACT_APP_API_BASE_URL +
-                        "/product/" +
-                        item.id
-                      }
-                    >
+                    <Link to={"/product/" + item._id}>
                       <img
                         alt=""
                         src={item.image[0].path}
