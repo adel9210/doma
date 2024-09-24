@@ -3,23 +3,8 @@ import SEO from "../../../components/seo";
 import { useForm } from "react-hook-form";
 import { useProducts } from "./use-Products";
 import { useNavigate, useParams } from "react-router-dom";
-import { setActiveSort } from "../../../helpers/product";
 import cogoToast from "cogo-toast";
-
-const categoriesList = [
-  {
-    name: "all",
-    value: "all",
-  },
-  {
-    name: "car",
-    value: "car",
-  },
-  {
-    name: "big",
-    value: "big",
-  },
-];
+import useCategories from "../categories/use-categories";
 
 const ProductForm = () => {
   const { register, reset, handleSubmit, formState, watch } = useForm();
@@ -32,13 +17,14 @@ const ProductForm = () => {
   const [categories, setCategories] = useState([]);
   const params = useParams();
   const productId = params.id;
+  const { categories: categoriesList } = useCategories();
 
   useEffect(() => {
     if (productId) {
       (async () => {
         const product = await getProductItem(productId);
-        debugger;
         reset(product);
+        setCategories(product.category);
       })();
     }
   }, [productId]);
@@ -56,9 +42,9 @@ const ProductForm = () => {
 
   const submitOrder = async (data) => {
     if (productId) {
-      await updateProduct(productId, data);
+      await updateProduct(productId, { ...data, category: categories });
     } else {
-      await addProduct(data);
+      await addProduct({ ...data, category: categories });
     }
     navigate("/admin/products");
   };
@@ -163,25 +149,25 @@ const ProductForm = () => {
                 <h5>Category</h5>
                 <div className="sidebar-widget-list">
                   <ul className="d-flex gap-4">
-                    {categoriesList.map((category, key) => {
+                    {categoriesList?.map((category, key) => {
                       return (
                         <li key={key}>
                           <div className="sidebar-widget-list-left">
                             <button
                               className={
-                                categories.includes(category.value)
+                                categories.includes(category.name)
                                   ? "active"
                                   : ""
                               }
                               type="button"
                               onClick={(e) => {
                                 setCategories((prev) => {
-                                  if (prev.includes(category.value)) {
+                                  if (prev.includes(category.name)) {
                                     return prev.filter(
-                                      (item) => item !== category.value,
+                                      (item) => item !== category.name,
                                     );
                                   }
-                                  return [...prev, category.value];
+                                  return [...prev, category.name];
                                 });
                               }}
                             >

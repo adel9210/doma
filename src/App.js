@@ -108,6 +108,12 @@ const CheckoutSuccess = lazy(() => import("./pages/other/CheckoutSuccess"));
 
 const AdminProducts = lazy(() => import("./pages/admin/products/product-list"));
 const AdminOrders = lazy(() => import("./pages/admin/products/order-list"));
+const AdminCategories = lazy(
+  () => import("./pages/admin/categories/categories-list"),
+);
+const AdminCategoriesForm = lazy(
+  () => import("./pages/admin/categories/categories-form"),
+);
 const AdminProductForm = lazy(
   () => import("./pages/admin/products/product-form"),
 );
@@ -419,6 +425,12 @@ const App = () => {
               <Route path="products/add" element={<AdminProductForm />} />
               <Route path="products/edit/:id" element={<AdminProductForm />} />
               <Route path="orders" element={<AdminOrders />} />
+              <Route path="categories" element={<AdminCategories />} />
+              <Route path="categories/add" element={<AdminCategoriesForm />} />
+              <Route
+                path="categories/edit/:id"
+                element={<AdminCategoriesForm />}
+              />
             </Route>
           </Routes>
         </Suspense>

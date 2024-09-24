@@ -32,6 +32,10 @@ function AdminLayout() {
                   <i className="pe-7s-shopbag"></i>
                   <Link to={"/admin/orders"}>Orders</Link>
                 </li>
+                <li>
+                  <i className="pe-7s-config"></i>
+                  <Link to={"/admin/categories"}>Categories</Link>
+                </li>
               </ul>
             </div>
           )}
