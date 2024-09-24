@@ -5,6 +5,7 @@ import Swiper, { SwiperSlide } from "../../components/swiper";
 import SectionTitle from "../../components/section-title/SectionTitle";
 import ProductGridSingle from "../../components/product/ProductGridSingle";
 import { getProducts } from "../../helpers/product";
+import { useProducts } from "../../pages/admin/products/use-Products";
 
 const settings = {
   loop: false,
@@ -28,12 +29,12 @@ const settings = {
 };
 
 const RelatedProductSlider = ({ spaceBottomClass, category }) => {
-  const { products } = useSelector((state) => state.product);
+  const { products } = useProducts();
   const currency = useSelector((state) => state.currency);
   const { cartItems } = useSelector((state) => state.cart);
   const { wishlistItems } = useSelector((state) => state.wishlist);
   const { compareItems } = useSelector((state) => state.compare);
-  const prods = getProducts(products, category, null, 6);
+  const prods = getProducts(products, null, "new", 6);
 
   return (
     <div className={clsx("related-product-area", spaceBottomClass)}>
