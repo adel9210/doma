@@ -4,11 +4,14 @@ import { setLoading } from "../store/slices/app-slice";
 import cogoToast from "cogo-toast";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const { user } = store.getState().user;
+console.log("userFrom", user);
 const AxiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 20000,
   headers: {
     "Content-Type": "application/json",
+    Authorization: user.token ? `${user.token}` : "",
   },
 });
 

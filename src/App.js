@@ -112,6 +112,8 @@ const AdminProductForm = lazy(
   () => import("./pages/admin/products/product-form"),
 );
 
+const AdminLogin = lazy(() => import("./pages/admin/login"));
+
 const NotFound = lazy(() => import("./pages/other/NotFound"));
 
 const App = () => {
@@ -412,6 +414,7 @@ const App = () => {
               path={process.env.PUBLIC_URL + "/admin"}
               element={<AdminLayout />}
             >
+              <Route path="" element={<AdminLogin />} />
               <Route path="products" element={<AdminProducts />} />
               <Route path="products/add" element={<AdminProductForm />} />
               <Route path="products/edit/:id" element={<AdminProductForm />} />
