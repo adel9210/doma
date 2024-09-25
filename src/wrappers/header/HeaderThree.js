@@ -6,7 +6,6 @@ import NavMenu from "../../components/header/NavMenu";
 import MobileMenu from "../../components/header/MobileMenu";
 import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
 
-
 const HeaderThree = () => {
   const [scroll, setScroll] = useState(0);
   const [headerTop, setHeaderTop] = useState(0);
@@ -31,7 +30,7 @@ const HeaderThree = () => {
         <div className="container-fluid">
           <div className="header-top-wap">
             {/* language currency changer */}
-            <LanguageCurrencyChanger currency={currency} />
+            {/*<LanguageCurrencyChanger currency={currency} />*/}
             {/* Icon group */}
             <IconGroup />
           </div>
@@ -66,7 +65,5 @@ const HeaderThree = () => {
     </header>
   );
 };
-
-
 
 export default HeaderThree;
