@@ -3,6 +3,7 @@ import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminLayout from "./pages/admin/AdminLayout";
 import { Loader } from "./components/Loader";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 // home pages
 const HomeFashion = lazy(() => import("./pages/home/HomeFashion"));
@@ -127,6 +128,7 @@ const App = () => {
     <Router>
       <Loader />
       <ScrollToTop>
+        <WhatsAppButton />
         <Suspense
           fallback={
             <div className="flone-preloader-wrapper">

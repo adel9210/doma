@@ -28,7 +28,7 @@ const ProductGridSingle = ({
     <Fragment>
       <div className={clsx("product-wrap", spaceBottomClass)}>
         <div className="product-img">
-          <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
+          <Link target="_blank" to={"/product/" + product._id}>
             <img
               className="default-img"
               src={product?.image?.[0]?.path}
