@@ -21,6 +21,11 @@ export const useOrders = () => {
     }
   };
 
+  const getOrderItem = async (id) => {
+    const response = await axios.get(`/orders/${id}`);
+    return response.data;
+  };
+
   useEffect(() => {
     getOrders().then();
   }, []);
@@ -28,5 +33,6 @@ export const useOrders = () => {
   return {
     orders,
     deleteOrder,
+    getOrderItem,
   };
 };

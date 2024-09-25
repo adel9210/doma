@@ -22,7 +22,7 @@ function AdminLayout() {
       <div className="container bg-white border-top">
         <div className="row">
           {user && (
-            <div className="col-lg-2 order-2 order-lg-1 bg-gray-7 p-3">
+            <div className="col-lg-2 order-2 order-lg-1 bg-gray-7 p-3 d-print-none">
               <ul className="product-layout-items mt-4">
                 <li>
                   <i className="pe-7s-cart"></i>

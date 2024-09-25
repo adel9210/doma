@@ -35,7 +35,7 @@ const RecentProduct = ({
   }
 
   const randomProducts = getRandomItems(products, 8);
-  debugger;
+
   return (
     <div
       className={clsx(
