@@ -2,8 +2,13 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
+import React from "react";
 
-const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
+const ProductDescriptionTab = ({
+  spaceBottomClass,
+  productFullDesc,
+  youtubeURL,
+}) => {
   const productFullDescList = productFullDesc
     .trim()
     .split("\n")
@@ -53,6 +58,32 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                     {item}
                   </div>
                 ))}
+
+                {youtubeURL && (
+                  <div
+                    className="mt-4"
+                    style={{
+                      position: "relative",
+                      paddingBottom: "56.25%",
+                      height: 0,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <iframe
+                      src={youtubeURL}
+                      frameBorder="0"
+                      allowFullScreen
+                      title="YouTube Video"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </div>
+                )}
               </Tab.Pane>
               <Tab.Pane eventKey="productReviews">
                 <div className="row">

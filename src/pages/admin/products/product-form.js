@@ -144,6 +144,12 @@ const ProductForm = () => {
             </div>
           </div>
           <div className="col-lg-12 col-md-12 billing-info-wrap">
+            <div className="billing-info mb-20">
+              <label>Youtube URL</label>
+              <input {...register("youtubeURL")} type="text" />
+            </div>
+          </div>
+          <div className="col-lg-12 col-md-12 billing-info-wrap">
             <div className="billing-info billing-select mb-20">
               <div className="sidebar-widget">
                 <h5>Category</h5>

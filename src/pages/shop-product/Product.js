@@ -55,6 +55,7 @@ const Product = () => {
         <ProductDescriptionTab
           spaceBottomClass="pb-90"
           productFullDesc={product.fullDescription}
+          youtubeURL={product.youtubeURL}
         />
 
         {/* related product slider */}
