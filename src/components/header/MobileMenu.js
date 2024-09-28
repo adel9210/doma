@@ -13,7 +13,7 @@ const MobileMenu = () => {
     for (let i = 0; i < offCanvasNavSubMenu.length; i++) {
       offCanvasNavSubMenu[i].insertAdjacentHTML(
         "beforebegin",
-        "<span class='menu-expand'><i></i></span>"
+        "<span class='menu-expand'><i></i></span>",
       );
     }
 
@@ -21,7 +21,7 @@ const MobileMenu = () => {
     const numMenuExpand = menuExpand.length;
 
     for (let i = 0; i < numMenuExpand; i++) {
-      menuExpand[i].addEventListener("click", e => {
+      menuExpand[i].addEventListener("click", (e) => {
         sideMenuExpand(e);
       });
     }
@@ -33,13 +33,13 @@ const MobileMenu = () => {
     }
   });
 
-  const sideMenuExpand = e => {
+  const sideMenuExpand = (e) => {
     e.currentTarget.parentElement.classList.toggle("active");
   };
 
   const closeMobileMenu = () => {
     const offcanvasMobileMenu = document.querySelector(
-      "#offcanvas-mobile-menu"
+      "#offcanvas-mobile-menu",
     );
     offcanvasMobileMenu.classList.remove("active");
   };
@@ -62,10 +62,10 @@ const MobileMenu = () => {
           <MobileNavMenu />
 
           {/* mobile language and currency */}
-          <MobileLangCurChange />
+          {/*<MobileLangCurChange />*/}
 
           {/* mobile widgets */}
-          <MobileWidgets />
+          {/*<MobileWidgets />*/}
         </div>
       </div>
     </div>
