@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getDiscountPrice } from "../../../helpers/product";
 import { useProducts } from "./use-Products";
 import { useSelector } from "react-redux";
+import NoProductsSkeleton from "../../../components/NoProductsSkelaton";
 
 const ProductList = () => {
   let { pathname } = useLocation();
@@ -115,11 +116,7 @@ const ProductList = () => {
             </tbody>
           </table>
         </div>
-        {!products.length && (
-          <div className="text-center container mt-4 bg-aqua p-4 rounded">
-            No Products Found!!...
-          </div>
-        )}
+        {!products.length && <NoProductsSkeleton />}
       </div>
     </Fragment>
   );

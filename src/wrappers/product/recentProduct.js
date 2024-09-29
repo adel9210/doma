@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import SectionTitle from "../../components/section-title/SectionTitle";
 import ProductGrid from "./ProductGrid";
 import useProductGrid from "./useProductGrid";
+import NoProductsSkeleton from "../../components/NoProductsSkelaton";
 
 const RecentProduct = ({
   spaceTopClass,
@@ -15,8 +16,8 @@ const RecentProduct = ({
   const { products } = useProductGrid();
   if (!products.length)
     return (
-      <div className="text-center container mt-4 bg-aqua p-4 rounded">
-        No Products Found!!...
+      <div className="mt-5">
+        <NoProductsSkeleton />;
       </div>
     );
 

@@ -5,6 +5,8 @@ import Nav from "react-bootstrap/Nav";
 import SectionTitle from "../../components/section-title/SectionTitle";
 import ProductGrid from "./ProductGrid";
 import useProductGrid from "./useProductGrid";
+import Skeleton from "react-loading-skeleton";
+import NoProductsSkeleton from "../../components/NoProductsSkelaton";
 
 const TabProduct = ({
   spaceTopClass,
@@ -14,12 +16,9 @@ const TabProduct = ({
 }) => {
   const { products } = useProductGrid();
 
-  if (!products.length)
-    return (
-      <div className="text-center container mt-4 bg-aqua p-4 rounded">
-        No Products Found!!...
-      </div>
-    );
+  if (!products.length) {
+    return <NoProductsSkeleton />;
+  }
 
   return (
     <div

@@ -8,6 +8,7 @@ import { getDiscountPrice } from "../../helpers/product";
 import ProductModal from "./ProductModal";
 import { addToCart } from "../../store/slices/cart-slice";
 import { addToWishlist } from "../../store/slices/wishlist-slice";
+import Skeleton from "react-loading-skeleton";
 
 const ProductGridSingle = ({
   product,

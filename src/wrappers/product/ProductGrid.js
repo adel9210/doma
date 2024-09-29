@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../helpers/product";
 import ProductGridSingle from "../../components/product/ProductGridSingle";
-import useProductGrid from "./useProductGrid";
 
 const ProductGrid = ({ spaceBottomClass, category, type, limit, products }) => {
   // const { products } = useSelector((state) => state.product)
