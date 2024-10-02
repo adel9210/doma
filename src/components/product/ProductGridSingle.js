@@ -9,6 +9,7 @@ import ProductModal from "./ProductModal";
 import { addToCart } from "../../store/slices/cart-slice";
 import { addToWishlist } from "../../store/slices/wishlist-slice";
 import Skeleton from "react-loading-skeleton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ProductGridSingle = ({
   product,
@@ -30,16 +31,27 @@ const ProductGridSingle = ({
       <div className={clsx("product-wrap", spaceBottomClass)}>
         <div className="product-img">
           <Link target="_blank" to={"/product/" + product._id}>
-            <img
-              className="default-img"
-              src={product?.image?.[0]?.path}
-              alt=""
+            <LazyLoadImage
+              effect="blur"
+              alt={product.name}
+              height={300}
+              width={300}
+              src={product?.image?.[0]?.path} // use normal <img> attributes as props
             />
+
+            {/*<img*/}
+            {/*  className="default-img"*/}
+            {/*  src={product?.image?.[0]?.path}*/}
+            {/*  alt=""*/}
+            {/*/>*/}
             {product.image?.length > 1 ? (
-              <img
-                className="hover-img"
-                src={product?.image?.[1].path}
-                alt=""
+              <LazyLoadImage
+                effect="blur"
+                wrapperClassName="hover-img"
+                alt={product.name}
+                height={300}
+                width={300}
+                src={product?.image?.[1]?.path} // use normal <img> attributes as props
               />
             ) : (
               ""

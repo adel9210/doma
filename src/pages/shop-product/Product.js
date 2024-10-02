@@ -8,6 +8,7 @@ import RelatedProductSlider from "../../wrappers/product/RelatedProductSlider";
 import ProductDescriptionTab from "../../wrappers/product/ProductDescriptionTab";
 import ProductImageDescription from "../../wrappers/product/ProductImageDescription";
 import { useProducts } from "../admin/products/use-Products";
+import { Loader } from "../../components/Loader";
 
 const Product = () => {
   let { pathname } = useLocation();
@@ -25,7 +26,11 @@ const Product = () => {
   }, []);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (
