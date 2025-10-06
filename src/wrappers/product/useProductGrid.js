@@ -10,8 +10,9 @@ const useProductGrid = () => {
   useEffect(() => {
     (async () => {
       const res = await axios.get("/products");
-      setProductsList(res.data);
-      dispatch(setProducts(res.data));
+      const showProducts = res.data.filter((product) => product.isVisible);
+      setProductsList(showProducts);
+      dispatch(setProducts(showProducts));
     })();
   }, []);
 

@@ -8,7 +8,7 @@ import NoProductsSkeleton from "../../../components/NoProductsSkelaton";
 
 const ProductList = () => {
   let { pathname } = useLocation();
-  const { products, removeProduct } = useProducts();
+  const { products, removeProduct, changeProductVisibility } = useProducts();
   let cartTotalPrice = 0;
   const currency = useSelector((state) => state.currency);
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ const ProductList = () => {
                 <th>Image</th>
                 <th>Product Name</th>
                 <th>Unit Price</th>
+                <th>Show</th>
                 <th>Qty</th>
                 <th>action</th>
               </tr>
@@ -99,6 +100,23 @@ const ProductList = () => {
                           {currency.currencySymbol + finalProductPrice}
                         </span>
                       )}
+                    </td>
+                    <td>
+                      {/*  add check box */}
+                      <input
+                        style={{
+                          width: "20px",
+                        }}
+                        type="checkbox"
+                        className="checkbox"
+                        checked={productItem.isVisible}
+                        onChange={(e) => {
+                          changeProductVisibility(productItem._id, productItem);
+
+                          debugger;
+                          // e.target.checked = !productItem.isVisible;
+                        }}
+                      />
                     </td>
                     <td>{productItem.stock}</td>
                     <td className="product-remove">

@@ -35,7 +35,11 @@ const RecentProduct = ({
     return arrayCopy.slice(0, num);
   }
 
-  const randomProducts = getRandomItems(products, 8);
+  debugger;
+
+  const randomProducts = getRandomItems(products, 8).filter(
+    (product) => product.isVisible,
+  );
 
   return (
     <div

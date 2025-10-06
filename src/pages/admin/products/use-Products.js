@@ -67,6 +67,14 @@ export const useProducts = () => {
     await axios.put(`/products/${id}`, updatedData);
   };
 
+  const changeProductVisibility = (id, product) => {
+    updateProduct(id, { ...product, isVisible: !product.isVisible }).then(
+      () => {
+        getProducts();
+      },
+    );
+  };
+
   useEffect(() => {
     getProducts().then();
   }, []);
@@ -78,5 +86,6 @@ export const useProducts = () => {
     updateProduct,
     getProductItem,
     deleteImage,
+    changeProductVisibility,
   };
 };
