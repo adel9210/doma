@@ -344,6 +344,15 @@ const MobileNavMenu = () => {
           <Link to="/shop-grid-standard">Products</Link>
         </li>
         <li>
+          <Link to="">{t("Essentials Oil")}</Link>
+        </li>
+        <li>
+          <Link to="">{t("Water Freshener")}</Link>
+        </li>
+        <li>
+          <Link to="">{t("Scented Candles")}</Link>
+        </li>
+        <li>
           <Link to="/contact">Contact Us</Link>
         </li>
         <li>
