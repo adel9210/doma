@@ -21,13 +21,17 @@ const NavMenu = ({ menuWhiteClass, sidebarMenu }) => {
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-              {t("products")}
+              {t("Products")}
             </Link>
           </li>
           <li>
-            <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-              {t("pil")}
-            </Link>
+            <Link to="">{t("Essentials Oil")}</Link>
+          </li>
+          <li>
+            <Link to="">{t("Water Freshener")}</Link>
+          </li>
+          <li>
+            <Link to="">{t("Scented Candles")}</Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/about"}>{t("about_us")}</Link>
